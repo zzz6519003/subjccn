@@ -105,3 +105,8 @@ SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时
     }
 }
 ```
+既然我们已经讲了一些新鲜的东西，//let’s take a detour down a well travelled road.
+
+#Nested UIScrollView
+
+问任何一个iOS开发者，他们都会告诉你，嵌套scroll view是UI元素，多到以至于Apple有一个章节https://developer.apple.com/library/ios/documentation/windowsviews/conceptual/UIScrollView_pg/NestedScrollViews/NestedScrollViews.html 在他们的UIScrollView Programming Guide里。我们学这么多革命的IOS界面不提到他们简直就是犯罪有木有。
