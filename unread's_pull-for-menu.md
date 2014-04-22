@@ -18,7 +18,8 @@ Objective-C的一个很棒的特性是有命名的变量。与语言的冗长同
 如果你想像你在拉皮条，它伸展得越长，这个皮条就会越细。这个物理表现在Unread的pull interaction被复制。尽管这是个小细节一个有可能你不仔细看都不会注意到的东西，他加深了我们的错觉，在拉这个scroll view超过了他的contentSize。我们遇到了阻力。
 为了模仿这个效果，我们提供了一个view(SCSPringExpandingView)，它会在两个不同的frame中动动动。这些view对于我们憋掉的，收缩状态的frame将会占据父view的
 
-`- (CGRect)frameForCollapsedState
+`
+- (CGRect)frameForCollapsedState
 {
 	return CGRectMake(0.f, CGRectGetMidY(self.bounds) - (CGRectGetWidth(self.bounds) / 2.f), 
 					  CGRectGetWidth(self.bounds), CGRectGetWidth(self.bounds));	
@@ -26,14 +27,16 @@ Objective-C的一个很棒的特性是有命名的变量。与语言的冗长同
 `
 当我们拉伸view到他伸展的状态，我们用一个frame，高为superview height，一半宽。我们也将变化水平上的origin这样我们的view呆在superview center.
 
-`- (CGRect)frameForExpandedState
+`
+- (CGRect)frameForExpandedState
 {
 	return CGRectMake(CGRectGetWidth(self.bounds) / 4.f, 0.f, 
 					  CGRectGetWidth(self.bounds) / 2.f, CGRectGetHeight(self.bounds));
 }`
 为了让view的角落变圆，我们设置我们的"拉伸view"的corderRadius为view的half width，给他一个圆形的感觉（当合起来），一个近似圆的边缘（当拉伸时候）。我们也将需要更新当我们变化view时候frame的center。不然有时候会有一个rounded edge er
 
-`- (void)layoutSubviews
+`
+- (void)layoutSubviews
 {
 	[super layoutSubviews];
 	self.stretchingView.layer.cornerRadius = CGRectGetMidX(self.stretchingView.bounds);
@@ -45,7 +48,8 @@ usingSpringWithDamping接受一个0.0 ~ 1.0的值来确定弹性的振幅，物�
 initialSpringVelocity还接受一个CGFloat然而这个传入值将会和动画移动距离有关。你自己调调看吧我翻译不了。。
 /*While these parameters correspond to physical properties, for the most part it’s a case of if it feels good, do it.*/
 
-```[UIView animateWithDuration:0.5f
+```
+[UIView animateWithDuration:0.5f
                       delay:0.0f
      usingSpringWithDamping:0.4f
       initialSpringVelocity:0.5f
