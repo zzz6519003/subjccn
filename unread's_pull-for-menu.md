@@ -76,7 +76,8 @@ SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时
 ```
 既然我们的views被铺放了，我们需要更新他们当有人调用setProgress:方法。如果我们看回Unread，我们可以看到三个不同的形态：一个倒塌的，扩展的和完成的状态。开始的两个我们说过，但是最后一个代表一个状态，就是我们释放就会导致菜单被显现。
 为了实现这个，我们遍历我们的三个SCSpringExpandingView并更新颜色根据progress的值是否大于或者等于1.0，跟着的是progress是否足够大以至view被展开。
-```- (void)setProgress:(CGFloat)progress
+```
+- (void)setProgress:(CGFloat)progress
 {
     _progress = progress;
     
