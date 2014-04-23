@@ -119,4 +119,4 @@ self.enclosingScrollView.delegate = self;
 [self.view addSubview:self.enclosingScrollView];
 ```
 关键一行是alwaysBou...为YES，不管contentSize，水平拖拽总是能继续超过bounds进行拖拽。
-如果我们的嵌套UITextView的水平content size不超过他的bounds
+如果我们的嵌套UITextView的水平content size不超过他的bounds，那么我们将完成
