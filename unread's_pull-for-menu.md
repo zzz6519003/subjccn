@@ -125,3 +125,4 @@ self.enclosingScrollView.delegate = self;
 在我们正在靠近iOS App Store的6周年纪念日its amazing how far the app landscape has come。The idea that we can consider apps as classics is an indication of just how fast its moving。每一年开发者都被给了一堆新的玩具玩，然而总有空间给古老的令人敬重的UIScrollView。
 你可以在Github上checkout this project。[https://github.com/subjc/SubjectiveCUnreadMenu]
 1.
+如果你感觉有些怀旧于那ios6的没好日子，这里有一个很好的克隆iOS6 pull-to-refresh https://github.com/Sephiroth87/ODRefreshControl。
