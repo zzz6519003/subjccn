@@ -120,3 +120,8 @@ self.enclosingScrollView.delegate = self;
 ```
 关键一行是alwaysBou...为YES，不管contentSize，水平拖拽总是能继续超过bounds进行拖拽。
 如果我们的嵌套UITextView的水平content size不超过他的bounds，那么我们将完成
+
+#Closing
+在我们正在靠近iOS App Store的6周年纪念日its amazing how far the app landscape has come。The idea that we can consider apps as classics is an indication of just how fast its moving。每一年开发者都被给了一堆新的玩具玩，然而总有空间给古老的令人敬重的UIScrollView。
+你可以在Github上checkout this project。[https://github.com/subjc/SubjectiveCUnreadMenu]
+1.
