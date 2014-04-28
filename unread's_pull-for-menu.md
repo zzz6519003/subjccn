@@ -4,9 +4,10 @@
 在2013中期，RSS世界发生很大变化。Google宣布Google Reader关闭。因此，无数声音在恐惧中呼喊出来然后安静下来。
 
 ##Landscape
-如果我们观察
+If we were to plot the landscape of news and content aggregation apps on iOS, we might plot apps like Flipboard and Pulse (now LinkedIn Pulse) at one end of the scale, where the experience drives not only content consumption but content discovery. 这些应用是你可以在周天早晨和一杯咖啡一起享受的（如果是澳大利亚和新西兰就是茶），沉迷于阅读中。
 ##Evolution
 如果我们看Tweetie，一个被视为iOS dev的商标的应用，他为我们带来了现在常有的下拉刷新的模式。下拉刷新变得被接受，甚至被期待有这个功能，他被苹果认可，并且被运用在了系统自带的Mail App。
+
 ##Deconstructing
 这些年WWDC给我们带来很多新鲜的东西玩：UIKit Dynaics, Text Kit, Sprite Kit, UIViewcontroller transition等。我们将用其中的两个来recreate Unread的菜单，UIViewcontroller transition和UIKit Dynamics，尽管我们不会直接处理后者。
 图
