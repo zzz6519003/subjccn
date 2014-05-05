@@ -1,4 +1,6 @@
 #Unread's pull-for-menu
+向你展示革命的进化
+
 
 ##Background
 在2013中期，RSS世界发生很大变化。Google宣布Google Reader关闭。因此，无数声音在恐惧中呼喊出来然后安静下来。
@@ -7,6 +9,7 @@
 If we were to plot the landscape of news and content aggregation apps on iOS, we might plot apps like Flipboard and Pulse (now LinkedIn Pulse) at one end of the scale, where the experience drives not only content consumption but content discovery. 这些应用是你可以在周天早晨和一杯咖啡一起享受的（如果是澳大利亚和新西兰就是茶），沉迷于阅读中。
 ##Evolution
 如果我们看Tweetie，一个被视为iOS dev的商标的应用，他为我们带来了现在常有的下拉刷新的模式。下拉刷新变得被接受，甚至被期待有这个功能，他被苹果认可，并且被运用在了系统自带的Mail App。
+然后就是[Facebook iOS app](https://itunes.apple.com/au/app/facebook/id284882215?mt=8%E2%80%8E)让导航抽屉变得流行(也就是"God Burger", "Burger Basement")。尽管他们已经一移除了这个效果
 
 ##Deconstructing
 这些年WWDC给我们带来很多新鲜的东西玩：UIKit Dynaics, Text Kit, Sprite Kit, UIViewcontroller transition等。我们将用其中的两个来recreate Unread的菜单，UIViewcontroller transition和UIKit Dynamics，尽管我们不会直接处理后者。
@@ -63,7 +66,8 @@ initialSpringVelocity还接受一个CGFloat然而这个传入值将会和动画�
 SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时提供一个接口，我们可以传入pull-for-menu交互的进度。
 为了SCSpringExpandingView的layout，我们覆盖layoutSubviews，并且把每一个frames排列齐，间距相等，位于我们的bounds中间。
 
-```- (void)layoutSubviews
+~~~
+- (void)layoutSubviews
 {
     [super layoutSubviews];    
     CGFloat interItemSpace = CGRectGetWidth(self.bounds) / self.springExpandViews.count;
@@ -75,10 +79,13 @@ SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时
         index++;
     }
 }
-```
+~~~
+
 既然我们的views被铺放了，我们需要更新他们当有人调用setProgress:方法。如果我们看回Unread，我们可以看到三个不同的形态：一个倒塌的，扩展的和完成的状态。开始的两个我们说过，但是最后一个代表一个状态，就是我们释放就会导致菜单被显现。
 为了实现这个，我们遍历我们的三个SCSpringExpandingView并更新颜色根据progress的值是否大于或者等于1.0，跟着的是progress是否足够大以至view被展开。
-```- (void)setProgress:(CGFloat)progress
+
+```
+- (void)setProgress:(CGFloat)progress
 {
     _progress = progress;
     
@@ -106,7 +113,9 @@ SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时
         index++;
     }
 }
+
 ```
+
 既然我们已经讲了一些新鲜的东西，//let’s take a detour down a well travelled road.
 
 #Nested UIScrollView
