@@ -1,10 +1,14 @@
+[原文地址](subjc.com/unread-overlay-menu/)
 #Unread's pull-for-menu
 向你展示革命的进化
 
 
 ##Background
 在2013中期，RSS世界发生很大变化。Google宣布Google Reader关闭。因此，无数声音在恐惧中呼喊出来然后安静下来。
-下降的使用率被称作是关闭的主要原因，然而来自Google Reader用户巨大的反应表明这项服务还是有很多人在用。
+下降的使用率被称作是关闭的主要原因，然而来自Google Reader用户巨大的反应表明这项服务还是有很多人在用。对于RSS的未来和开放的web的未来，网络上一阵嘘声。然而同时也有乐观，这是一个机会，对我们没法跟Google这样的巨头竞争的开发者，这是一个机会，来做一个Google Reader的替代品。
+尽管)
+－－
+这篇文章是关于[Unread](http://jaredsinclair.com/unread/)的pull-for-menu的交互，但是他也是关于历史，我们是走了多久，如何到这里的。
 
 ##Landscape
 If we were to plot the landscape of news and content aggregation apps on iOS, we might plot apps like Flipboard and Pulse (now LinkedIn Pulse) at one end of the scale, where the experience drives not only content consumption but content discovery. 这些应用是你可以在周天早晨和一杯咖啡一起享受的（如果是澳大利亚和新西兰就是茶），沉迷于阅读中。
