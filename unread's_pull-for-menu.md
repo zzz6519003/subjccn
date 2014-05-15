@@ -1,4 +1,4 @@
-[原文地址](www.subjc.com/unread-overlay-menu/)
+[原文地址](http://www.subjc.com/unread-overlay-menu)
 #Unread's pull-for-menu
 向你展示革命的进化
 
