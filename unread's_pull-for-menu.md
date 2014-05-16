@@ -1,6 +1,7 @@
-[原文地址](subjc.com/unread-overlay-menu/)
 #Unread's pull-for-menu
 向你展示革命的进化
+
+[原文地址](subjc.com/unread-overlay-menu/)
 
 
 ##Background
@@ -20,6 +21,7 @@ If we were to plot the landscape of news and content aggregation apps on iOS, we
 这些年WWDC给我们带来很多新鲜的东西玩：UIKit Dynaics, Text Kit, Sprite Kit, UIViewcontroller transition等。我们将用其中的两个来recreate Unread的菜单，UIViewcontroller transition和UIKit Dynamics，尽管我们不会直接处理后者。
 图
 首先我们注意到得失当我们拉内容的时候，首先像弹簧般展现出来pull indicator。。。
+
 
 #That 7 parameter method
 Objective-C的一个很棒的特性是有命名的变量。与语言的冗长同时而来的，他给我们一种很自然的方式来说明一个方法的目的。尽管有些方法名的长度会吓跑菜鸟。有一个这样的新的UIView block based animation方法，animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion: 尽管不是Cocoa Touch最长的方法名，但是肯定是在排行榜上的.
@@ -56,7 +58,7 @@ Objective-C的一个很棒的特性是有命名的变量。与语言的冗长同
 剩下的就是用我们那个有长名字的方法来在两种状态中动动动了。
 大多数变量我们之前都见过，我们来看看那两个比较重要的usingSpringWithDamping和initialSpringVelocity。
 usingSpringWithDamping接受一个0.0 ~ 1.0的值来确定弹性的振幅，物理上得感觉，弹性的力度。越接近1，弹得越大，反之越小。
-initialSpringVelocity还接受一个CGFloat然而这个传入值将会和动画移动距离有关。你自己调调看吧我翻译不了。。
+initialSpringVelocity还接受一个CGFloat然而这个传入值将会和动画移动距离有关。 A value of 1.0 translates to the total animation distance traversed in 1 second while a value of 0.5 translates to half the animation distance traversed in 1 second.(你自己调调看吧我翻译不了。。)
 /*While these parameters correspond to physical properties, for the most part it’s a case of if it feels good, do it.*/
 
 ```
@@ -75,7 +77,7 @@ initialSpringVelocity还接受一个CGFloat然而这个传入值将会和动画�
 现在我们创建了SCSpringExpandingView，我们还需要创建一个view来装下SCSpringExpandingView。我们叫他SCDragAffordanceView。
 SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时提供一个接口，我们可以传入pull-for-menu交互的进度。
 为了SCSpringExpandingView的layout，我们覆盖layoutSubviews，并且把每一个frames排列齐，间距相等，位于我们的bounds中间。
-
+        
 ```
 - (void)layoutSubviews
 {
@@ -92,6 +94,7 @@ SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时
 ```
 既然我们的views被铺放了，我们需要更新他们当有人调用setProgress:方法。如果我们看回Unread，我们可以看到三个不同的形态：一个倒塌的，扩展的和完成的状态。开始的两个我们说过，但是最后一个代表一个状态，就是我们释放就会导致菜单被显现。
 为了实现这个，我们遍历我们的三个SCSpringExpandingView并更新颜色根据progress的值是否大于或者等于1.0，跟着的是progress是否足够大以至view被展开。
+
 ```
 - (void)setProgress:(CGFloat)progress
 {
@@ -132,6 +135,7 @@ SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时
 对于我们的市里内容，我们将展示一些Lorem lpsum用UITextView，一个收到了一些Text Kit的爱在ios7下。尽管我们不将覆盖任何新API在这章，任何有兴趣的人应该看看很棒的文章在objc.io上http://www.objc.io/issue-5/getting-to-know-textkit.html。Instead，我们需要的就是记住UITextView是牛逼哄哄的UIScrollView的子类。
 我们希望我们的SCDragAffordanceView总是在手上，准备展现菜单。一个选择可以考虑是把他作为subview加到UITextView，并且修改他的垂直origin基于UITextView的contentOffset，但是这让UITextView干得太多了，他的责任只是展示文字。
 相反我们来创建一个独立的UIScrollView的实例，我们的UITextView和SCDragAffordanceView将被添加为subviews。
+
 ```
 self.enclosingScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
 self.enclosingScrollView.alwaysBounceHorizontal = YES;
