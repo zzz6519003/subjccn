@@ -132,7 +132,7 @@ SCDragAffordanceView的基本工作就是放置三个SCSpringExpandingView同时
 #Nested UIScrollView
 
 问任何一个iOS开发者，他们都会告诉你，嵌套scroll view是UI元素，多到以至于Apple有一个章节https://developer.apple.com/library/ios/documentation/windowsviews/conceptual/UIScrollView_pg/NestedScrollViews/NestedScrollViews.html 在他们的UIScrollView Programming Guide里。我们学这么多革命的IOS界面不提到他们简直就是犯罪有木有。
-对于我们的市里内容，我们将展示一些Lorem lpsum用UITextView，一个收到了一些Text Kit的爱在ios7下。尽管我们不将覆盖任何新API在这章，任何有兴趣的人应该看看很棒的文章在objc.io上http://www.objc.io/issue-5/getting-to-know-textkit.html。Instead，我们需要的就是记住UITextView是牛逼哄哄的UIScrollView的子类。
+对于我们的实例内容，我们将展示一些Lorem lpsum用UITextView，一个收到了一些Text Kit的爱在ios7下。尽管我们不将覆盖任何新API在这章，任何有兴趣的人应该看看[很棒的文章](http://www.objc.io/issue-5/getting-to-know-textkit.html)。Instead，我们需要的就是记住UITextView是牛逼哄哄的UIScrollView的子类。
 我们希望我们的SCDragAffordanceView总是在手上，准备展现菜单。一个选择可以考虑是把他作为subview加到UITextView，并且修改他的垂直origin基于UITextView的contentOffset，但是这让UITextView干得太多了，他的责任只是展示文字。
 相反我们来创建一个独立的UIScrollView的实例，我们的UITextView和SCDragAffordanceView将被添加为subviews。
 
@@ -142,7 +142,7 @@ self.enclosingScrollView.alwaysBounceHorizontal = YES;
 self.enclosingScrollView.delegate = self;
 [self.view addSubview:self.enclosingScrollView];
 ```
-关键一行是alwaysBou...为YES，不管contentSize，水平拖拽总是能继续超过bounds进行拖拽。
+关键一行是alwaysBounceHorizontal为YES，不管contentSize，水平拖拽总是能继续超过bounds进行拖拽。
 如果我们的嵌套UITextView的水平content size不超过他的bounds，那么我们将完成
 
 #Closing
