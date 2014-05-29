@@ -146,6 +146,9 @@ self.enclosingScrollView.delegate = self;
 关键一行是alwaysBounceHorizontal为YES，不管contentSize，水平拖拽总是能继续超过bounds进行拖拽。
 如果我们的嵌套UITextView的水平content size不超过他的bounds，那么我们将完成
 
+#UIViewControllerTransitioningDelegate
+一个版本带来了巨大变化。如果这篇文章在iOS7之前写的，它将变得更长，而且充满了caveat。之前如果你想有像Unread的这种pull-for-menu，你必须将你的view插在当前的view controller上面，window，或者其他类似的不干净的做法。尽管这样可以给你所需要的效果，感觉这么做总是有点不合理。
+
 #Closing
 在我们正在靠近iOS App Store的6周年纪念日its amazing how far the app landscape has come。The idea that we can consider apps as classics is an indication of just how fast its moving。每一年开发者都被给了一堆新的玩具玩，然而总有空间给古老的令人敬重的UIScrollView。
 你可以在Github上checkout this project。[https://github.com/subjc/SubjectiveCUnreadMenu]
