@@ -151,7 +151,20 @@ self.enclosingScrollView.delegate = self;
 很感激的是在ios7，Apple注意到了这种模式的出现，从开发者社区又做了一次榜样，提供了一种干净，准许的方式来实现这个，用的是一系列很简单的protocol。你现在可以定义自定义动画和交互式过度效果在vc之间，通过实现UIViewcontroller TransitionDelegate协议。
 这个协议生命了一些脸方法，允许你返回animator对象，定义了3个view transition阶段之一：presenting， dismissing和interacting。我们的自定义过度将会被定义在presenting和dismissing阶段。
 在我们的view controller，我们将定义我们实现了UIViewcontrollerTansitionDelgate协议，并且实现我们关心的两个方法`animationControllerForPresentedController:presentingController:sourceController`, `animationControllerForDismissedController:`.
-既然我们提供了回调，我们需要一个viewcontroller来展现他们。
+既然我们提供了回调，我们需要一个viewcontroller来展现他们。Undread的menu item动画超过了本篇文章的讨论范围，所以我们就创建一个view controller(SCMenuViewController)，当被触发时展示。
+
+```
+self.menuViewController = [[SCMenuViewController alloc] initWithNibName:nil bundle:nil];
+
+```
+一旦我们创建了一个这个类的实例，我们需要设置他的`transitionDelegate`为我们的view controller并且设置他的modalPresentationStyle为UIModalPresentationCustom这样他就会产生回调。
+
+```
+self.menuViewController.modalPresentationStyle = UIModalPresentationCustom;
+self.menuViewController.transitioningDelegate = self;
+
+```
+现在我们来展示我们的menu view controller，他将回调到它的transitioningDelegate（我们的view controller）来获取当前正在展示的`UIViewControllerAnimatedTransitioning`animator对象。
 
 #Closing
 在我们正在靠近iOS App Store的6周年纪念日its amazing how far the app landscape has come。The idea that we can consider apps as classics is an indication of just how fast its moving。每一年开发者都被给了一堆新的玩具玩，然而总有空间给古老的令人敬重的UIScrollView。
