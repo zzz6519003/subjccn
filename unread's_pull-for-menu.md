@@ -165,7 +165,56 @@ self.menuViewController.transitioningDelegate = self;
 
 ```
 现在我们来展示我们的menu view controller，他将回调到它的transitioningDelegate（我们的view controller）来获取当前正在展示的`UIViewControllerAnimatedTransitioning`animator对象。
+#UIViewControllerAnimatedTransitioning
+为了提供我们的animator对象给我们的menu view controller，我们将通过创建一个简单的旧的NSObject子类，叫做`SCOverlayPresentTransition`，然后声明他遵循`UIViewControllerAnimatedTrasnitioning`协议。在我们的`animationControllerForPresentedController:presentingController:sourceController`回调中，我们将创建一个SCOverlayPresentTransition对象并返回他。
 
+```
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    return [[SCOverlayPresentTransition alloc] init];
+}
+
+```
+为了产生消失的动画，我们将创建一个其他的NSObject子类叫做`SCOverlayDismissTransition`并且提供一个实例，当我们收到了`animationControllerForDismissedController:`回调.
+
+```
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return [[SCOverlayDismissTransition alloc] init];
+}
+
+```
+我们展现和消失过渡对象包含了两个方法，`transitionDuration:`和`animateTransition:`是过渡真实发生的地方。
+
+```
+UIViewController *presentingViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+UIViewController *overlayViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+
+```
+一旦我们有了展示的和被展示的view controller，我们需要把它们的view作为我们transition的container view的subview这样他们才会在动画期间都展示出来。
+
+```
+UIView *containerView = [transitionContext containerView];
+[containerView addSubview:presentingViewController.view];
+[containerView addSubview:overlayViewController.view];
+```
+`The final piece of the presenting transition is to simply animate the views however we fancy, then notify the transitionContext object whether we’ve completed our transition successfully.
+`
+
+```
+overlayViewController.view.alpha = 0.f;
+NSTimeInterval transitionDuration = [self transitionDuration:transitionContext];
+[UIView animateWithDuration:transitionDuration
+                  animations:^{
+                     overlayViewController.view.alpha = 0.9f;
+                 } completion:^(BOOL finished) {
+                     BOOL transitionWasCancelled = [transitionContext transitionWasCancelled];
+                     [transitionContext completeTransition:transitionWasCancelled == NO];
+                 }];
+
+```
+这个`SCOverlayDismissTransition`将会是个差不多一样的过程，尽管是相反的。
+现在当我们的view controller被展示，它将使用我们的自定义transition，保持展示的view controller的view层级。
 #Closing
 在我们正在靠近iOS App Store的6周年纪念日its amazing how far the app landscape has come。The idea that we can consider apps as classics is an indication of just how fast its moving。每一年开发者都被给了一堆新的玩具玩，然而总有空间给古老的令人敬重的UIScrollView。
 你可以在Github上checkout this project。[https://github.com/subjc/SubjectiveCUnreadMenu]
