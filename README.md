@@ -5,6 +5,8 @@ subjccn
 
 Any pull request is welcomed.
 
-###how to send me a pull request in 1 minute
-Those sentence in code format are the one that i'm not able to translate.
+###How to send me a pull request in 1 minute.
+Those sentence in `code` format are the one that i'm not able to translate.
 Just edit on the web and send me a pr.
+I'm gonna be happy,
+and you are goona have some green.
