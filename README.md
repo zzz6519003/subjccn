@@ -1,4 +1,4 @@
-subjccn
+Subjccn
 =======
 
 [subjc.com](http://subjc.com) chinese translation
